@@ -1,7 +1,7 @@
-const accessKey = "n0m3tKesRrMKcwc3dTxFYPBEuXtTroz82SxuV_KV1yk"
+const accessKey = "n0m3tKesRrMKcwc3dTxFYPBEuXtTroz82SxuV_KV1yk";
 
-const formE1 = document.querySelector("form");
-const inputE1 = document.getElementById("search-input");
+const formEl = document.querySelector("form");
+const inputEl = document.getElementById("search-input");
 const searchResults = document.querySelector(".search-results");
 const showMore = document.getElementById("show-more-button");
 
@@ -9,7 +9,7 @@ let inputData = "";
 let page = 1;
 
 async function searchImages(){
-    inputData = inputE1.value;
+    inputData = inputEl.value;
     const url = `https://api.unsplash.com/search/photos?page=${page}&query=${inputData}&client_id=${accessKey}`;
 
     const response = await fetch(url);
@@ -34,7 +34,7 @@ async function searchImages(){
 
         imageWrapper.appendChild(image);
         imageWrapper.appendChild(imageLink);
-        imageWrapper.appendChild(imageWrapper);
+        searchResults.appendChild(imageWrapper);
     });
 
     page++;
@@ -43,7 +43,7 @@ async function searchImages(){
     }
 }
 
-formE1.addEventListener("submit", ( event) =>{
+formEl.addEventListener("submit", (event) =>{
     event.preventDefault();
     page = 1;
     searchImages();
